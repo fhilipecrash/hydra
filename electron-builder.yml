@@ -35,8 +35,9 @@ dmg:
 linux:
   target:
     - AppImage
-    - snap
+    - rpm
     - deb
+    - flatpak
   maintainer: electronjs.org
   category: Utility
 appImage:

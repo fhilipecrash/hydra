@@ -8,6 +8,7 @@ out
 *.log*
 .env
 .vite
+.venv/
 
 # Sentry Config File
 .env.sentry-build-plugin
