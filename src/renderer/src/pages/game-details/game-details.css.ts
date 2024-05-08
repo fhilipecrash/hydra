@@ -79,8 +79,96 @@ export const descriptionContent = style({
   height: "100%",
 });
 
+export const gallerySliderContainer = style({
+  padding: `${SPACING_UNIT * 3}px ${SPACING_UNIT * 2}px`,
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+});
+
+export const gallerySliderMedia = style({
+  width: "100%",
+  height: "100%",
+  display: "block",
+  flexShrink: 0,
+  flexGrow: 0,
+  transition: "translate 300ms ease-in-out",
+});
+
+export const gallerySliderAnimationContainer = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  position: "relative",
+  overflow: "hidden",
+  "@media": {
+    "(min-width: 1280px)": {
+      width: "60%",
+    },
+  },
+});
+
+export const gallerySliderPreview = style({
+  width: "100%",
+  paddingTop: "0.5rem",
+  height: "100%",
+  display: "flex",
+  position: "relative",
+  overflowX: "auto",
+  overflowY: "hidden",
+  "@media": {
+    "(min-width: 1280px)": {
+      width: "60%",
+    },
+  },
+  "::-webkit-scrollbar-thumb": {
+    width: "20%"
+  }
+});
+
+export const gallerySliderMediaPreview = style({
+  cursor: "pointer",
+  width: "20%",
+  height: "20%",
+  display: "block",
+  flexShrink: 0,
+  flexGrow: 0,
+  opacity: 0.3,
+  paddingRight: "5px",
+  transition: "translate 300ms ease-in-out",
+  ":hover": {
+    opacity: 1,
+  },
+});
+
+export const gallerySliderMediaPreviewActive = style({
+  opacity: 1,
+});
+
+export const gallerySliderButton = style({
+  all: "unset",
+  display: "block",
+  position: "absolute",
+  top: 0,
+  bottom: 0,
+  padding: "1rem",
+  cursor: "pointer",
+  transition: "background-color 100ms ease-in-out",
+  ":hover": {
+    backgroundColor: "rgb(0,0,0, 0.2)",
+  },
+});
+
+export const gallerySliderIcons = style({
+  stroke: "white",
+  fill: "black",
+  width: "2rem",
+  height: "2rem",
+});
+
 export const contentSidebar = style({
-  borderLeft: `solid 1px ${vars.color.borderColor};`,
+  borderLeft: `solid 1px ${vars.color.border};`,
   width: "100%",
   height: "100%",
   "@media": {
@@ -105,7 +193,6 @@ export const contentSidebarTitle = style({
   display: "flex",
   alignItems: "center",
   backgroundColor: vars.color.background,
-  borderBottom: `solid 1px ${vars.color.borderColor}`,
 });
 
 export const requirementButtonContainer = style({
@@ -114,7 +201,7 @@ export const requirementButtonContainer = style({
 });
 
 export const requirementButton = style({
-  border: `solid 1px ${vars.color.borderColor};`,
+  border: `solid 1px ${vars.color.border};`,
   borderLeft: "none",
   borderRight: "none",
   borderRadius: "0",
@@ -171,7 +258,6 @@ export const descriptionSkeleton = style({
 export const descriptionHeader = style({
   width: "100%",
   padding: `${SPACING_UNIT * 2}px ${SPACING_UNIT * 2}px`,
-  borderBottom: `solid 1px ${vars.color.borderColor}`,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -183,7 +269,6 @@ export const descriptionHeaderInfo = style({
   display: "flex",
   gap: `${SPACING_UNIT}px`,
   flexDirection: "column",
-  fontSize: vars.size.bodyFontSize,
 });
 
 export const howLongToBeatCategoriesList = style({
@@ -201,16 +286,15 @@ export const howLongToBeatCategory = style({
   backgroundColor: vars.color.background,
   borderRadius: "8px",
   padding: `8px 16px`,
-  border: `solid 1px ${vars.color.borderColor}`,
+  border: `solid 1px ${vars.color.border}`,
 });
 
 export const howLongToBeatCategoryLabel = style({
-  fontSize: vars.size.bodyFontSize,
-  color: "#DADBE1",
+  color: vars.color.muted,
 });
 
 export const howLongToBeatCategorySkeleton = style({
-  border: `solid 1px ${vars.color.borderColor}`,
+  border: `solid 1px ${vars.color.border}`,
   borderRadius: "8px",
   height: "76px",
 });
@@ -224,7 +308,7 @@ export const randomizerButton = style({
   /* Scroll bar + spacing */
   right: `${9 + SPACING_UNIT * 2}px`,
   boxShadow: "rgba(255, 255, 255, 0.1) 0px 0px 10px 3px",
-  border: `solid 2px ${vars.color.borderColor}`,
+  border: `solid 2px ${vars.color.border}`,
   backgroundColor: vars.color.background,
   ":hover": {
     backgroundColor: vars.color.background,
@@ -234,6 +318,16 @@ export const randomizerButton = style({
   ":active": {
     transform: "scale(0.98)",
   },
+});
+
+export const heroPanelSkeleton = style({
+  width: "100%",
+  padding: `${SPACING_UNIT * 2}px ${SPACING_UNIT * 2}px`,
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: vars.color.background,
+  height: "72px",
+  borderBottom: `solid 1px ${vars.color.border}`,
 });
 
 globalStyle(".bb_tag", {

@@ -5,6 +5,7 @@ directories:
 extraResources:
   - hydra-download-manager
   - hydra.db
+  - fastlist.exe
 files:
   - "!**/.vscode/*"
   - "!src/*"
@@ -22,6 +23,7 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  oneClick: false
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
