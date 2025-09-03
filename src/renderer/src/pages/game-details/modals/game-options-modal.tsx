@@ -1,6 +1,12 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, CheckboxField, Modal, TextField } from "@renderer/components";
+import {
+  Button,
+  CheckboxField,
+  Modal,
+  SelectField,
+  TextField,
+} from "@renderer/components";
 import type { LibraryGame, ShortcutLocation } from "@types";
 import { gameDetailsContext } from "@renderer/context";
 import { DeleteGameModal } from "@renderer/pages/downloads/delete-game-modal";
@@ -17,6 +23,11 @@ export interface GameOptionsModalProps {
   visible: boolean;
   game: LibraryGame;
   onClose: () => void;
+}
+
+interface WineBinaryOptions {
+  name: string;
+  path: string;
 }
 
 export function GameOptionsModal({
@@ -40,6 +51,9 @@ export function GameOptionsModal({
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showRemoveGameModal, setShowRemoveGameModal] = useState(false);
+  const [wineBinaryOptions, setWineBinaryOptions] = useState<
+    WineBinaryOptions[]
+  >([]);
   const [launchOptions, setLaunchOptions] = useState(game.launchOptions ?? "");
   const [showResetAchievementsModal, setShowResetAchievementsModal] =
     useState(false);
@@ -242,6 +256,25 @@ export function GameOptionsModal({
     updateGame();
   };
 
+  const fetchWineBinaries = async () => {
+    const wineBinariesPath = await window.electron.getWineBinaries();
+    if (wineBinariesPath) {
+      const directories = await window.electron.readDirectory(wineBinariesPath);
+      const wineBinaryOptions = directories.map((dir: string) => ({
+        path: `${wineBinariesPath}/${dir}`,
+        name: dir,
+      }));
+      logger.info("Fetched wine binaries:", wineBinaryOptions);
+      setWineBinaryOptions(wineBinaryOptions);
+    } else {
+      setWineBinaryOptions([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchWineBinaries();
+  }, []);
+
   return (
     <>
       <DeleteGameModal
@@ -395,6 +428,22 @@ export function GameOptionsModal({
               />
             </div>
           )}
+
+          <div className="game-options-modal__wine-prefix">
+            <div className="game-options-modal__header">
+              <h2>{t("wine_binary")}</h2>
+              <h4 className="game-options-modal__header-description">
+                {t("wine_binary_description")}
+              </h4>
+            </div>
+            <SelectField
+              options={wineBinaryOptions.map((binary) => ({
+                key: binary.name,
+                value: binary.path,
+                label: binary.name,
+              }))}
+            />
+          </div>
 
           <div className="game-options-modal__launch-options">
             <div className="game-options-modal__header">

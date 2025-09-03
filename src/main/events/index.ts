@@ -35,6 +35,8 @@ import "./library/select-game-wine-prefix";
 import "./library/reset-game-achievements";
 import "./library/toggle-automatic-cloud-sync";
 import "./library/get-default-wine-prefix-selection-path";
+import "./library/get-wine-binaries";
+import "./library/read-directory";
 import "./library/create-steam-shortcut";
 import "./misc/open-checkout";
 import "./misc/open-external";
